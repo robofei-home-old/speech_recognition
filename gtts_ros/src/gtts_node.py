@@ -21,7 +21,7 @@ class GTTS_ROS:
         self._action_name = "gtts_ros"
         self._as = actionlib.SimpleActionServer(self._action_name, gtts_ros.msg.TalkAction, execute_cb=self.execute_cb, auto_start = False)
         self._as.start()
-        rospy.loginfo('Read to talk.')
+        rospy.loginfo('Ready to talk.')
 
     def execute_cb(self, goal):
         # helper variables
@@ -34,12 +34,13 @@ class GTTS_ROS:
         self._as.publish_feedback(self._feedback)
 
         #
-        if self.online == False:
-            os.system("./flite/bin/flite -voice slt '"+goal.phrase+"' /tmp/flite.wav && play /tmp/flite.wav")
-        else:    
-            tts = gTTS(text=goal.phrase    , lang='en')
-            tts.save("talk.mp3")
-            os.system("mpg321 talk.mp3 >/dev/null 2>&1")
+        # if self.online == False:
+        #     os.system("./flite/bin/flite -voice slt '"+goal.phrase+"' /tmp/flite.wav && play /tmp/flite.wav")
+        # else:    
+        tts = gTTS(text=goal.phrase, lang='pt', tld='com.br')
+        tts.save("talk.mp3")
+        # os.system("mpg321 talk.mp3/ -g 100 >/dev/null 2>&1")
+        os.system("ffplay talk.mp3")
 
         # publish the result
         rospy.loginfo('%s: Succeeded' % self._action_name)
