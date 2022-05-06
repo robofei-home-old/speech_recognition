@@ -51,7 +51,7 @@ class Recognition_server():
 
 		#print 'len do choices '+str(req.choices)
 		#print 'len do spec '+str(req.spec)
-		print 'I heard: %s'%recog
+		print ('I heard: %s'%recog)
 
 		z = recog.split()
 		if z[:3] == ['how', 'much', 'is']:
@@ -158,7 +158,8 @@ class Recognition_server():
 		plist = []
 		for i in Spec:
 			#tempVal = SequenceMatcher(None, phrase, i).ratio()
-			tempVal = jf.jaro_winkler(unicode(phrase),unicode(i))
+			# tempVal = jf.jaro_winkler(unicode(phrase),unicode(i))
+			tempVal = jf.jaro_winkler(phrase,i)
 			if tempVal >= 0.6:
 				plist.append(i)
 		return  plist
@@ -183,7 +184,7 @@ class Recognition_server():
 				x = os.popen("deepspeech --model "+self.PATH+"/models/output_graph.pbmm --trie "+self.PATH+"/models/trie --lm "+self.PATH+"/models/lm.binary --alphabet "+self.PATH+"/models/alphabet.txt --audio "+self.PATH+"/audio.wav").read()
  
 				x = str(x.split('Running inference.'))
-				print "I understood: "+str(x)
+				print ("I understood: "+str(x))
 				x = x[2:-4]
 				return x
 

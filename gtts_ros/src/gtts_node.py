@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 import rospy
@@ -17,7 +17,7 @@ class GTTS_ROS:
     _result = gtts_ros.msg.TalkResult()
 
     def __init__(self):
-	self.online = rospy.get_param('~ONLINE')
+        self.online = rospy.get_param('~ONLINE')
         self._action_name = "gtts_ros"
         self._as = actionlib.SimpleActionServer(self._action_name, gtts_ros.msg.TalkAction, execute_cb=self.execute_cb, auto_start = False)
         self._as.start()
@@ -37,10 +37,12 @@ class GTTS_ROS:
         # if self.online == False:
         #     os.system("./flite/bin/flite -voice slt '"+goal.phrase+"' /tmp/flite.wav && play /tmp/flite.wav")
         # else:    
-        tts = gTTS(text=goal.phrase, lang='pt', tld='com.br')
+        # tts = gTTS(text=goal.phrase.decode('utf-8'), lang='pt', tld='com.br')
+        # tts = gTTS(text=goal.phrase.decode('utf-8'), lang='en', tld='co.uk')
+        tts = gTTS(text=goal.phrase, lang='en', tld='co.uk')
         tts.save("talk.mp3")
         # os.system("mpg321 talk.mp3/ -g 100 >/dev/null 2>&1")
-        os.system("ffplay talk.mp3")
+        os.system("ffplay talk.mp3 -autoexit -nodisp")
 
         # publish the result
         rospy.loginfo('%s: Succeeded' % self._action_name)

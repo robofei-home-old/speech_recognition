@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package format="2">
+<package format="3">
   <name>gtts_ros</name>
   <version>0.0.0</version>
   <description>The gtts_ros package</description>
@@ -28,6 +28,10 @@
   <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
 
 
+
+ <buildtool_depend condition="$ROS_PYTHON_VERSION == 2">python-setuptools</buildtool_depend>
+ <buildtool_depend condition="$ROS_PYTHON_VERSION == 3">python3-setuptools</buildtool_depend>
+  
   <!-- The *depend tags are used to specify dependencies -->
   <!-- Dependencies can be catkin packages or system dependencies -->
   <!-- Examples: -->
