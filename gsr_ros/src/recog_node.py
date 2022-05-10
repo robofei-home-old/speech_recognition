@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from gsr_ros.msg import *
 from gsr_ros.srv import *
