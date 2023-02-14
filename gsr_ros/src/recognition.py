@@ -36,7 +36,7 @@ class Recognition_server():
 		with sr.Microphone(sample_rate=16000) as source:
 			self.r.adjust_for_ambient_noise(source, duration=2)
 			time.sleep(2)
-			os.system('ogg123 '+self.PATH+'/cricket-sound.ogg >/dev/null 2>&1')
+			os.system('ogg123 '+self.PATH+'/beep.ogg >/dev/null 2>&1')
 			#time.sleep(1)
 			print("Say something!")
 			#audio = r.listen(source) Listen is a method where the computer will stop listening when there is silence
