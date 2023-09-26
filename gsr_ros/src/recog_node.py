@@ -40,7 +40,6 @@ class Recognition_server():
 			audio = self.r.record(source,duration=7)
 		
 		recog = self.API_Recognition(audio)
-		print recog
 		if recog == 'Error while processing the audio' or SequenceMatcher(None, recog, "API error; x").ratio() >= 0.75:
 			spec = recog
 			resp = []

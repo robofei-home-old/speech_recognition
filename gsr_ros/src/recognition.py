@@ -33,9 +33,8 @@ class Recognition_server():
 		resp = []
 		choice = []
 
-		with sr.Microphone(sample_rate=16000) as source:
-			self.r.adjust_for_ambient_noise(source, duration=2)
-			time.sleep(2)
+		with sr.Microphone(sample_rate=48000) as source:
+			self.r.adjust_for_ambient_noise(source, duration=1)
 			os.system('ogg123 '+self.PATH+'/beep.ogg >/dev/null 2>&1')
 			#time.sleep(1)
 			print("Say something!")
