@@ -39,7 +39,7 @@ class GTTS_ROS:
         # else:    
         # tts = gTTS(text=goal.phrase.decode('utf-8'), lang='pt', tld='com.br')
         # tts = gTTS(text=goal.phrase.decode('utf-8'), lang='en', tld='co.uk')
-        tts = gTTS(text=goal.phrase, lang='en', tld='co.uk')
+        tts = gTTS(text=goal.phrase, lang='pt', tld='com.br')
         tts.save("talk.mp3")
         # os.system("mpg321 talk.mp3/ -g 100 >/dev/null 2>&1")
         os.system("ffplay talk.mp3 -autoexit -nodisp")
